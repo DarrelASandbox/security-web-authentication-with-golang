@@ -5,7 +5,7 @@
     <li><a href="#basics">Basics</a>
       <ol>
         <li><a href="#01-json-encoding">01-json-encoding</a></li>
-        <li><a href="#02-basic-authentication">02-basic-authentication</a></li>
+        <li><a href="#02-authentication-basics">02-authentication-basics</a></li>
       </ol>
     </li>
   </ol>
@@ -34,7 +34,7 @@
   - go modules
 - `02-encode-decode` - decode: `curl -XGET -H "Content-type: application/json" -d '{"First":"James"}' 'localhost:8080/decode'`
 
-### 02-basic-authentication
+### 02-authentication-basics
 
 - **base64**
   - reversible
@@ -46,11 +46,27 @@
     - For verifying that some message has not change
   - [Go Package - jwt](https://github.com/golang-jwt/jwt)
     - `go list -m -versions github.com/golang-jwt/jwt`
+  - [Go Package - uuid](https://github.com/gofrs/uuid)
 
 ```sh
 # In 03-jwt folder
 go get github.com/golang-jwt/jwt
 ```
+
+- **Hashing**
+  - MD5 - don’t use
+  - SHA
+  - Bcrypt
+  - Scrypt
+- **Signing**
+  - **Symmetric Key**
+    - HMAC
+    - same key to sign (encrypt) / verify (decrypt)
+  - **Asymmetric Key**
+    - RSA
+    - ECDSA - better than RSA; faster; smaller keys
+    - private key to sign (encrypt) / public key to verify (decrypt)
+  - **JWT**
 
 &nbsp;
 

@@ -1,11 +1,17 @@
 package main
 
 import (
+	"crypto/rand"
 	"fmt"
+	"io"
 	"time"
 
+	"github.com/gofrs/uuid"
 	"github.com/golang-jwt/jwt"
 )
+
+func main() {
+}
 
 type UserClaims struct {
 	jwt.StandardClaims
@@ -24,17 +30,17 @@ func (u *UserClaims) Valid() error {
 	return nil
 }
 
-var key = []byte{}
-
-func main() {
-	for i := 0; 0 < 64; i++ {
-		key = append(key, byte(i))
-	}
+type key struct {
+	key     []byte
+	created time.Time
 }
+
+var currentKid = ""
+var keys = map[string]key{}
 
 func createToken(c *UserClaims) (string, error) {
 	t := jwt.NewWithClaims(jwt.SigningMethodHS512, c)
-	signedToken, err := t.SignedString(key)
+	signedToken, err := t.SignedString(keys[currentKid].key)
 	if err != nil {
 		return "", fmt.Errorf("error in createToken when signing token: %w", err)
 	}
@@ -47,7 +53,18 @@ func parseToken(signedToken string) (*UserClaims, error) {
 		if t.Method.Alg() != jwt.SigningMethodHS512.Alg() {
 			return nil, fmt.Errorf("invalid credentials")
 		}
-		return key, nil
+
+		kid, ok := t.Header["kid"].(string)
+		if !ok {
+			return nil, fmt.Errorf("invalid key ID")
+		}
+
+		k, ok := keys[kid]
+		if !ok {
+			return nil, fmt.Errorf("invalid key ID")
+		}
+
+		return k, nil
 	})
 
 	if err != nil {
@@ -59,4 +76,25 @@ func parseToken(signedToken string) (*UserClaims, error) {
 	}
 
 	return t.Claims.(*UserClaims), nil
+}
+
+func generateNewKey() error {
+	newKey := make([]byte, 64)
+	_, err := io.ReadFull(rand.Reader, newKey)
+	if err != nil {
+		return fmt.Errorf("error: %w", err)
+	}
+
+	uid, err := uuid.NewV4()
+	if err != nil {
+		return fmt.Errorf("error: %w", err)
+	}
+
+	keys[uid.String()] = key{
+		key:     newKey,
+		created: time.Now(),
+	}
+	currentKid = uid.String()
+
+	return nil
 }
