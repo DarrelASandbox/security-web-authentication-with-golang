@@ -5,6 +5,7 @@
     <li><a href="#01-json-encoding">01-json-encoding</a></li>
     <li><a href="#02-authentication-basics">02-authentication-basics</a></li>
     <li><a href="#03-hmac-cookie">03-hmac-cookie</a></li>
+    <li><a href="#04-jwt-cookie">04-jwt-cookie</a></li>
   </ol>
 </details>
 
@@ -81,6 +82,17 @@ go get github.com/golang-jwt/jwt
 &nbsp;
 
 ## 03-hmac-cookie
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 04-jwt-cookie
+
+- [Russ Cox - Our Software Dependency Problem](https://research.swtch.com/deps)
+- [Go Package - jwt-go](https://github.com/dgrijalva/jwt-go)
 
 &nbsp;
 
