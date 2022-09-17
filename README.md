@@ -2,12 +2,9 @@
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#about-the-project">About The Project</a></li>
-    <li><a href="#basics">Basics</a>
-      <ol>
-        <li><a href="#01-json-encoding">01-json-encoding</a></li>
-        <li><a href="#02-authentication-basics">02-authentication-basics</a></li>
-      </ol>
-    </li>
+    <li><a href="#01-json-encoding">01-json-encoding</a></li>
+    <li><a href="#02-authentication-basics">02-authentication-basics</a></li>
+    <li><a href="#03-hmac-cookie">03-hmac-cookie</a></li>
   </ol>
 </details>
 
@@ -26,15 +23,19 @@
 
 &nbsp;
 
-## Basics
-
-### 01-json-encoding
+## 01-json-encoding
 
 - **Marshal**
   - go modules
 - `02-encode-decode` - decode: `curl -XGET -H "Content-type: application/json" -d '{"First":"James"}' 'localhost:8080/decode'`
 
-### 02-authentication-basics
+&nbsp;
+
+---
+
+&nbsp;
+
+## 02-authentication-basics
 
 - **base64**
   - reversible
@@ -72,6 +73,14 @@ go get github.com/golang-jwt/jwt
     - AES
   - **Asymmetric Key**
     - RSA
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 03-hmac-cookie
 
 &nbsp;
 
