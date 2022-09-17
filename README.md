@@ -67,6 +67,11 @@ go get github.com/golang-jwt/jwt
     - ECDSA - better than RSA; faster; smaller keys
     - private key to sign (encrypt) / public key to verify (decrypt)
   - **JWT**
+- **Encryption**
+  - **Symmetric key**
+    - AES
+  - **Asymmetric Key**
+    - RSA
 
 &nbsp;
 
