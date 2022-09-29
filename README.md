@@ -6,6 +6,7 @@
     <li><a href="#02-authentication-basics">02-authentication-basics</a></li>
     <li><a href="#03-hmac-cookie">03-hmac-cookie</a></li>
     <li><a href="#04-jwt-cookie">04-jwt-cookie</a></li>
+    <li><a href="#05-oatuh2">05-oatuh2</a></li>
   </ol>
 </details>
 
@@ -93,6 +94,33 @@ go get github.com/golang-jwt/jwt
 
 - [Russ Cox - Our Software Dependency Problem](https://research.swtch.com/deps)
 - [Go Package - jwt-go](https://github.com/dgrijalva/jwt-go)
+
+&nbsp;
+
+---
+
+&nbsp;
+
+## 05-oatuh2
+
+- **OAuth2 package**
+  - create a config struct
+  - **authcodeURL**
+    - state is some string, anything, some unique ID for this login attempt
+    - returns string that you want to redirect your users to
+  - **Exchange**
+    - converts a code into a token
+  - **TokenSource**
+    - gives us a token source
+  - **NewClient**
+    - gives us an http client
+    - this client is authenticated with the oauth resource provider
+- [Hackernoon - Build your own OAuth2 Server in Go](https://hackernoon.com/build-your-own-oauth2-server-in-go-7d0f660732c3)
+- [GitHub GraphQL API](https://docs.github.com/en/graphql)
+- Github.com -> Settings -> Developer settings -> OAuth Apps
+  - Application name
+  - Homepage URL: https://example.com
+  - Authorization callback URL: http://localhost:8080/oauth2/receive
 
 &nbsp;
 
